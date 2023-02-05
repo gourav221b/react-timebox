@@ -1,0 +1,87 @@
+.navWrapper
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    min-height: 130px;
+    /* font-family: 'Anton',sans-serif; */
+   
+}
+.navWrapper span
+{
+font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+.navTop
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 30px 0;
+}
+
+.createNew
+{
+    background: #007bff;
+    padding:6px 12px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.TabsWrapper
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    position: relative;
+    
+}
+.TabsWrapper::after
+{
+    content: ' ';
+    position: absolute;
+    bottom: 1px;
+    display: flex;
+    width: 100%;
+    height: 0.5px;
+    
+    box-shadow: rgba(0, 0, 0, 0.111) 0 0.0625em 0px, rgba(0, 0, 0, 0.11) 0.5em 0px , rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+.TabsWrapper>a
+{
+
+    font-size: 15px;
+    text-transform: capitalize;
+    font-weight: 600;
+    margin: 0 20px;
+    text-decoration: none;
+    color: #111;
+    transition: 0.5s ease;
+    
+}
+
+.TabsWrapper .active ,.TabsWrapper>a:hover
+{
+    color: #2952b2;
+    font-weight: 600;
+}
+.TabsWrapper>a::after,.TabsWrapper a:hover:after,.TabsWrapper .active::after
+{
+    content: ' ';
+    display: flex;
+    width: 100%;
+    height: 2px;
+    background: #2952b2;
+    transition: 0.4s ease;
+    border-radius: 4px 4px 0 0;
+}.TabsWrapper>a::after {
+    width: 0;
+}

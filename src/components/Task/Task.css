@@ -1,0 +1,93 @@
+.taskWrapper
+{
+    margin-top: 30px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.taskNameInput
+{
+    background: transparent;
+    border: none;
+    outline: none;
+}
+.taskNameInput:focus
+{
+    border-bottom: 2px solid #111;
+}
+.tablePill
+{
+    background: gray;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 6px 20px;
+    border-radius: 20px;
+    color: #fff;
+}
+.completed
+{
+    background: rgb(21, 113, 63);    
+}
+.remaining
+{
+    background: #0051ff;
+}
+.actionButtonWrapper
+{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.actionBtn
+{
+    margin: 0 5px;
+    border-radius: 5px;
+    padding: 8px 15px;
+    color: #fff;
+    font-size: 110%;
+    opacity: 0.9;
+    transition: 0.4s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.actionBtn:hover
+{
+    opacity: 1;
+}
+.checkButton
+{
+    background: rgb(17, 131, 89);
+}
+.deleteButton
+{
+    background: rgb(163, 33, 33);
+}
+
+.completed-row
+{
+    opacity: 1;
+    position: relative;
+}
+.completed-row >*
+{
+    pointer-events: none;
+    opacity: 0.6;
+}
+.completed-row .actionButtonWrapper>*
+{
+    pointer-events: all !important;
+    opacity: 1 !important;
+}
+/* .completed-row::after
+{
+    content: ' ';
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    width:75%;
+    height: 0.5px;
+    background: #111;
+} */
