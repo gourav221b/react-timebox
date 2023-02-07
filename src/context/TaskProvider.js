@@ -1,27 +1,34 @@
 import { createContext, useState, useEffect } from "react";
+import { toast, cssTransition } from "react-toastify";
 import { status } from "../constants/statusConstant";
+import { toastConstants } from "../constants/toastConstant";
 const TaskContext = createContext({});
 
 export const TaskProvider = ({ children }) => {
     const [task, setTask] = useState(() => {
-        // get the todos from localstorage
+
         const savedTasks = localStorage.getItem("taskList");
-        // if there are Tasks stored
-        if (savedTasks) {
-            // return the parsed JSON object back to a javascript object
+        if (savedTasks)
             return JSON.parse(savedTasks);
-            // otherwise
-        } else {
-            // return an empty array
-            return [];
-        }
+        return [];
+
     });
     const [modalOpen, setModalOpen] = useState(false);
+    const [notification, setNotification] = useState(() => {
+        const savedNotification = localStorage.getItem("notification");
+        if (savedNotification)
+            return JSON.parse(savedNotification);
+        return false;
+
+    });
 
     useEffect(() => {
         localStorage.setItem('taskList', JSON.stringify(task));
-        console.log(task)
     }, [task]);
+
+    useEffect(() => {
+        localStorage.setItem('notification', JSON.stringify(notification));
+    }, [notification]);
 
     const dispatchUserEvent = (actionType, payload) => {
         switch (actionType) {
@@ -67,8 +74,27 @@ export const TaskProvider = ({ children }) => {
     const toggleModal = () => {
         setModalOpen(!modalOpen)
     }
+    const toggleNotifications = () => {
+        setNotification(!notification)
+    }
+
+    const toastMessage = (type, message) => {
+        switch (type) {
+            case toastConstants.SUCCESS: toast.success(message); return;
+            case toastConstants.FAIL: toast.error(message); return;
+            default: toast(message); return;
+        }
+    }
     return (
-        <TaskContext.Provider value={{ task, modalOpen, toggleModal, dispatchUserEvent }}>
+        <TaskContext.Provider value={{
+            task,
+            modalOpen,
+            toggleModal,
+            dispatchUserEvent,
+            toastMessage,
+            notification,
+            toggleNotifications
+        }}>
             {children}
         </TaskContext.Provider>
     )

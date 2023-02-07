@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 import Modal from "../components/Modal/Modal";
 import Nav from "../components/NavBar/Nav";
 // import Nav from "../components/Nav/Nav";
@@ -24,6 +27,18 @@ const Main = ({ role }) => {
   return (
     <>
       {/* <Nav role={role} /> */}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <Modal />
       <Nav role={role}></Nav>
       <section className="mainWrapper">

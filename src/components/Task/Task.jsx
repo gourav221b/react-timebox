@@ -4,11 +4,14 @@ import { BsCheckLg } from "react-icons/bs";
 import { FiTrash2 } from "react-icons/fi";
 import { FaRedoAlt } from "react-icons/fa";
 import moment from "moment/moment";
+
 import "./Task.css";
 import TaskContext from "../../context/TaskProvider";
 import { status } from "../../constants/statusConstant";
+import { toastConstants } from "../../constants/toastConstant";
+
 const Task = ({ task }) => {
-  const { dispatchUserEvent } = useContext(TaskContext);
+  const { dispatchUserEvent, toastMessage } = useContext(TaskContext);
 
   const [PageSize, setPageSize] = useState(8);
   const [paginateStatus, setPaginateStatus] = useState({
@@ -24,10 +27,12 @@ const Task = ({ task }) => {
 
   const updateTaskHandler = (record, status) => {
     dispatchUserEvent("UPDATE_TASK", { id: record.id, status: status });
+    toastMessage(toastConstants.SUCCESS, "Task updated successfully!");
   };
 
   const deleteTaskHandler = (record) => {
     dispatchUserEvent("REMOVE_TASK", record.id);
+    toastMessage(toastConstants.SUCCESS, "Task deleted successfully!");
   };
 
   const columns = [
