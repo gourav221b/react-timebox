@@ -8,13 +8,31 @@ import { toastConstants } from "../../constants/toastConstant";
 const Modal = () => {
   const { modalOpen, toggleModal, dispatchUserEvent, toastMessage } =
     useContext(TaskContext);
-  const [time, setTime] = useState([
-    5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
-  ]);
+
   const taskName = useRef();
   const startTime = useRef();
   const endTime = useRef();
 
+  const addTime = (time) => {
+    if (time == 60) {
+      if (startTime.current.value.split(":")[0] == 23)
+        endTime.current.value =
+          parseInt(startTime.current.value.split(":")[0]) +
+          1 +
+          ":" +
+          startTime.current.value.split(":")[1];
+      endTime.current.value =
+        parseInt(startTime.current.value.split(":")[0]) +
+        1 +
+        ":" +
+        startTime.current.value.split(":")[1];
+    } else
+      endTime.current.value =
+        startTime.current.value.split(":")[0] +
+        ":" +
+        parseInt(startTime.current.value.split(":")[1]) +
+        1;
+  };
   const handleSubmit = () => {
     let validate = false;
     let newItem = {
@@ -67,9 +85,9 @@ const Modal = () => {
               name="startTime"
               id="startTime"
               className="form-control"
-              defaultValue={new Date()}
+              defaultValue={new Date().getTime()}
+              onChange={(e) => console.log(typeof e.target.value)}
               ref={startTime}
-              min="22:00"
             />
 
             <label htmlFor="task">End Time</label>
@@ -77,11 +95,22 @@ const Modal = () => {
               type="time"
               name="endTime"
               id="endTime"
+              defaultValue={startTime.current.value}
               className="form-control"
               ref={endTime}
-              min={startTime?.current?.value}
             />
-
+            <label htmlFor="task">Quick Add</label>
+            <div className="quickTimerButtonWrapper">
+              <div className="quickAddButton" onClick={() => addTime(15)}>
+                15 mins
+              </div>
+              <div className="quickAddButton" onClick={() => addTime(30)}>
+                30 mins
+              </div>
+              <div className="quickAddButton" onClick={() => addTime(60)}>
+                1 hour
+              </div>
+            </div>
             <button className="addTaskBtn" onClick={() => handleSubmit()}>
               Add Task
             </button>

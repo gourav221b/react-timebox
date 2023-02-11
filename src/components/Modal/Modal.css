@@ -3,6 +3,7 @@
     width: 100vw;
     height: 100vh;
     position: fixed;
+    top: 0;
     background: #11111150;
     backdrop-filter: blur(4px);
     display: flex;
@@ -112,4 +113,19 @@
 }
 .addTaskBtn:hover::before {
     width: 100%;
+}
+
+.quickTimerButtonWrapper
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+.quickAddButton
+{
+    background: #007bff29;
+    color: #007Bff;
+    border: 2px solid #007Bff;
+    border-radius: 10px;
+    margin: 4px;
+    padding: 6px 10px;
 }
